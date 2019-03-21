@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run --rm -it -v $PWD:/usr/src/app -w /usr/src/app node:latest npm "$@"
+docker run --rm -it -v $PWD:/usr/src/app -w /usr/src/app -p 8080:8080 node:latest npm "$@"
