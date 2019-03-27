@@ -23,7 +23,7 @@
             </div>
             <div class="field">
               <div class="control">
-                <button class="button" v-on:click="findDepartures">Show</button>
+                <button class="button" v-on:click="findDepartures" v-bind:class="{ 'is-loading': loading }">Show</button>
               </div>
             </div>
           </fieldset>

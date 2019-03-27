@@ -7,6 +7,7 @@ var form = new Vue({
 	data: {
     departureStationCode: null,
     arrivalStationCode: null,
+    loading: false,
     departures: []
 	},
 	methods: {
@@ -18,6 +19,8 @@ var form = new Vue({
       if (!this.departureStationCode) {
         return;
       }
+
+      this.loading = true;
 
       let url = `${apiUrl}/${this.departureStationCode}/live.json?app_id=${appId}&app_key=${appKey}&calling_at=${this.arrivalStationCode || ""}&darwin=false&train_status=passenger&from_offset=PT00:00:00&station_detail=calling_at,destination`;
 
@@ -31,6 +34,8 @@ var form = new Vue({
               platform: departure["platform"]
             };
           });
+          
+          this.loading = false;
         });
       });
 		}
