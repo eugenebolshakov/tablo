@@ -9,18 +9,8 @@
       <section class="section">
         <div class="container">
           <fieldset>
-            <div class="field">
-              <label class="label">From</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="From" v-model.trim="departureStationCode">
-              </div>
-            </div>
-            <div class="field">
-              <label class="label">To</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="To" v-model.trim="arrivalStationCode">
-              </div>
-            </div>
+            <station-selector label="From" v-model="departureStationCode"></station-selector>
+            <station-selector label="To" v-model="arrivalStationCode"></station-selector>
             <div class="field">
               <div class="control">
                 <button class="button" v-on:click="findDepartures" v-bind:class="{ 'is-loading': loading }">Show</button>
