@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tablo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div id="app">
+      <section class="section">
+        <div class="container">
+          <fieldset>
+            <station-selector label="From" v-model="departureStationCode"></station-selector>
+            <station-selector label="To" v-model="arrivalStationCode"></station-selector>
+            <div class="field">
+              <div class="control">
+                <button class="button" v-on:click="findDepartures" v-bind:class="{ 'is-loading': loading }">Show</button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+      <section class="section" v-if="departures.length > 0">
+        <div class="container">
+          <table class="table is-fullwidth">
+            <thead>
+              <tr>
+                <th>Destination</th>
+                <th><abbr title="Departure">Dep</abbr></th>
+                <th><abbr title="Arrival">Arr</abbr></th>
+                <th><abbr title="Platform">Plat</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="departure in departures">
+                <td>{{ departure.destination }}</td>
+                <td>{{ departure.departure_time }}</td>
+                <td>{{ departure.arrival_time }}</td>
+                <td>{{ departure.platform }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  <script type="text/javascript" src="main.js"></script></body>
+</html>
+
