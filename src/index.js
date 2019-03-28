@@ -1,6 +1,6 @@
 import './index.scss';
-import stations from './stations.js';
 
+import stations from './stations.js';
 import Vue from 'vue';
 
 Vue.component('station-selector', {
@@ -40,6 +40,10 @@ Vue.component('station-selector', {
   }
 });
 
+const knownStatuses = ['ON TIME', 'STARTS HERE', 'CHANGE OF ORIGIN', 'EARLY', 'NO REPORT'];
+const dangerStatuses = ['DELAYED', 'CANCELLED'];
+const warningStatuses = ['LATE', 'BUS'];
+
 var form = new Vue({
   el: '#app',
 	data: {
@@ -68,8 +72,13 @@ var form = new Vue({
             {
               destination: departure["destination_name"],
               departure_time: departure["expected_departure_time"],
+              original_departure_time: departure["aimed_departure_time"],
               arrival_time: (departure["station_detail"]["calling_at"][0] || departure["station_detail"]["destination"])["aimed_arrival_time"],
-              platform: departure["platform"]
+              platform: departure["platform"],
+              status: departure["status"],
+              show_tag: !knownStatuses.includes(departure["status"]),
+              danger: dangerStatuses.includes(departure["status"]),
+              warning: warningStatuses.includes(departure["status"])
             }
           ));
           

@@ -1,3 +1,7 @@
 $section-padding: 1rem;
 
 @import "~bulma/bulma";
+
+.is-strikethrough {
+  text-decoration: line-through;
+}

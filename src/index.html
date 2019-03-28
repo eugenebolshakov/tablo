@@ -25,17 +25,25 @@
             <thead>
               <tr>
                 <th>Destination</th>
-                <th><abbr title="Departure">Dep</abbr></th>
-                <th><abbr title="Arrival">Arr</abbr></th>
-                <th><abbr title="Platform">Plat</abbr></th>
+                <th class="has-text-centered"><abbr title="Departure">Dep</abbr></th>
+                <th class="has-text-centered"><abbr title="Arrival">Arr</abbr></th>
+                <th class="has-text-centered"><abbr title="Platform">Plat</abbr></th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="departure in departures">
-                <td>{{ departure.destination }}</td>
-                <td>{{ departure.departure_time }}</td>
-                <td>{{ departure.arrival_time }}</td>
-                <td>{{ departure.platform }}</td>
+                <td>
+                  {{ departure.destination }}
+                  <span class="tag" v-if="departure.show_tag" v-bind:class="{ 'is-warning': departure.warning, 'is-danger': departure.danger }">{{ departure.status }}</span>
+                </td>
+                <td class="has-text-centered">
+                  {{ departure.departure_time }}
+                  <span class="tag is-white is-strikethrough" v-if="departure.departure_time != departure.original_departure_time">
+                    {{ departure.original_departure_time }}
+                  </span>
+                </td>
+                <td class="has-text-centered">{{ departure.arrival_time }}</td>
+                <td class="has-text-centered">{{ departure.platform }}</td>
               </tr>
             </tbody>
           </table>
