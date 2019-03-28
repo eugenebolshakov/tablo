@@ -40,7 +40,7 @@ Vue.component('station-selector', {
   }
 });
 
-const knownStatuses = ['ON TIME', 'STARTS HERE', 'CHANGE OF ORIGIN', 'EARLY', 'NO REPORT'];
+const knownStatuses = ['ON TIME', 'STARTS HERE', 'CHANGE OF ORIGIN', 'EARLY', 'NO REPORT', 'OFF ROUTE'];
 const dangerStatuses = ['DELAYED', 'CANCELLED'];
 const warningStatuses = ['LATE', 'BUS'];
 
