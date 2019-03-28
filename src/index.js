@@ -1,18 +1,43 @@
 import './index.scss';
+import stations from './stations.js';
 
 import Vue from 'vue';
 
 Vue.component('station-selector', {
   props: ['label'],
-  data: () => ({ value: null }),
+  data: () => ({ value: null, name: null, suggestions: [] }),
   template: `
     <div class="field">
       <label class="label">{{ label }}</label>
       <div class="control">
-        <input class="input" type="text" v-bind:placeholder="label" v-bind:value="value" v-on:input="$emit('input', $event.target.value)">
+        <input class="input" type="text" v-bind:placeholder="label" v-bind:value="name" v-on:input="name = $event.target.value; showSuggestions()">
+      </div>
+      <div class="dropdown is-active" v-if="suggestions.length > 0">
+        <div class="dropdown-menu">
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-item" v-for="suggestion in suggestions" v-on:click.prevent="selectSuggestion(suggestion)">{{ suggestion.name }}</a>
+          </div>
+        </div>
       </div>
     </div>
-  `
+  `,
+  methods: {
+    showSuggestions: function() {
+      if (this.name.length) {
+        let regExp = new RegExp(`^${this.name.toLowerCase()}`, 'i');
+        this.suggestions = stations.filter(station => station.name.match(regExp));
+      } else {
+        this.suggestions = [];
+      }
+    },
+
+    selectSuggestion: function(suggestion) {
+      this.name = suggestion.name;
+      this.value = suggestion.code;
+      this.suggestions = [];
+      this.$emit('input', this.value);
+    }
+  }
 });
 
 var form = new Vue({
