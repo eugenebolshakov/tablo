@@ -5,7 +5,7 @@ import Vue from 'vue';
 
 Vue.component('station-selector', {
   props: ['label'],
-  data: () => ({ value: null, name: null, suggestions: [] }),
+  data: () => ({ code: null, name: null, suggestions: [] }),
   template: `
     <div class="field">
       <label class="label">{{ label }}</label>
@@ -33,9 +33,9 @@ Vue.component('station-selector', {
 
     selectSuggestion: function(suggestion) {
       this.name = suggestion.name;
-      this.value = suggestion.code;
+      this.code = suggestion.code;
       this.suggestions = [];
-      this.$emit('input', this.value);
+      this.$emit('input', this.code);
     }
   }
 });

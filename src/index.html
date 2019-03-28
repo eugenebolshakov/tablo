@@ -9,8 +9,8 @@
       <section class="section">
         <div class="container">
           <fieldset>
-            <station-selector label="From" v-model="departureStationCode"></station-selector>
-            <station-selector label="To" v-model="arrivalStationCode"></station-selector>
+            <station-selector label="From" v-bind:code="departureStationCode" v-on:input="departureStationCode = $event; findDepartures()"></station-selector>
+            <station-selector label="To" v-bind:code="arrivalStationCode" v-on:input="arrivalStationCode = $event; findDepartures()"></station-selector>
             <div class="field">
               <div class="control">
                 <button class="button" v-on:click="findDepartures" v-bind:class="{ 'is-loading': loading }">Show</button>
