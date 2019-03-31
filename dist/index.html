@@ -5,51 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div id="app">
-      <section class="section">
-        <div class="container">
-          <fieldset>
-            <station-selector label="From" v-bind:code="departureStationCode" v-on:input="departureStationCode = $event; findDepartures()"></station-selector>
-            <station-selector label="To" v-bind:code="arrivalStationCode" v-on:input="arrivalStationCode = $event; findDepartures()"></station-selector>
-            <div class="field">
-              <div class="control">
-                <button class="button" v-on:click="findDepartures" v-bind:class="{ 'is-loading': loading }">Show</button>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </section>
-      <section class="section" v-if="departures.length > 0">
-        <div class="container">
-          <table class="table is-fullwidth">
-            <thead>
-              <tr>
-                <th>Destination</th>
-                <th class="has-text-centered"><abbr title="Departure">Dep</abbr></th>
-                <th class="has-text-centered"><abbr title="Arrival">Arr</abbr></th>
-                <th class="has-text-centered"><abbr title="Platform">Plat</abbr></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="departure in departures">
-                <td>
-                  {{ departure.destination }}
-                  <span class="tag" v-if="departure.show_tag" v-bind:class="{ 'is-warning': departure.warning, 'is-danger': departure.danger }">{{ departure.status }}</span>
-                </td>
-                <td class="has-text-centered">
-                  {{ departure.departure_time }}
-                  <span class="tag is-white is-strikethrough" v-if="departure.departure_time != departure.original_departure_time">
-                    {{ departure.original_departure_time }}
-                  </span>
-                </td>
-                <td class="has-text-centered">{{ departure.arrival_time }}</td>
-                <td class="has-text-centered">{{ departure.platform }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </div>
+    <div id="app"></div>
   <script type="text/javascript" src="main.js"></script></body>
 </html>
-
