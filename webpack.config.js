@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const webpack = require('webpack');
 
 let config = {
   mode: 'development',
@@ -32,6 +33,8 @@ let config = {
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.devtool = 'inline-source-map';
+    config.devServer = { hot: true };
+    config.plugins << new webpack.HotModuleReplacementPlugin();
   }
 
   return config;
