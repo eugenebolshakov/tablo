@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env, argv) => {
   let config = {
@@ -51,6 +52,17 @@ module.exports = (env, argv) => {
     config.devtool = 'inline-source-map';
     config.devServer = { hot: true };
     config.plugins << new webpack.HotModuleReplacementPlugin();
+  }
+
+  if (argv.mode === 'production') {
+    config.optimization = {
+      minimizer: [
+        new TerserPlugin({
+          test: /\.js(\?.*)?$/i,
+          parallel: true,
+        })
+      ]
+    };
   }
 
   return config;
