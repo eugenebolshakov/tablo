@@ -5,13 +5,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = (env, argv) => {
   let config = {
     module: {
       rules: [
-        {
-          test: /\.(sc|c)ss$/,
+        { test: /\.(sc|c)ss$/,
           use: argv.mode === 'production'
             ? [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
             : ['vue-style-loader', 'css-loader', 'sass-loader' ]
@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.devtool = 'inline-source-map';
     config.devServer = { hot: true };
-    config.plugins << new webpack.HotModuleReplacementPlugin();
+    config.plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   if (argv.mode === 'production') {
@@ -63,6 +63,7 @@ module.exports = (env, argv) => {
         })
       ]
     };
+    config.plugins.push(new CompressionPlugin());
   }
 
   return config;
