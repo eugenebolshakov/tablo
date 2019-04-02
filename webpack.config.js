@@ -16,6 +16,19 @@ module.exports = (env, argv) => {
             : ['vue-style-loader', 'css-loader', 'sass-loader' ]
         },
         {
+          test: /\.js$/,
+          exclude: file => (
+            /node_modules/.test(file) &&
+            !/\.vue\.js/.test(file)
+          ),
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        },
+        {
           test: /\.vue$/,
           loader: 'vue-loader'
         }
