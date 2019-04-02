@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-module.exports = {
+let config = {
   mode: 'development',
   module: {
     rules: [
@@ -26,6 +26,13 @@ module.exports = {
       template: './src/index.html'
     }),
     new VueLoaderPlugin()
-  ],
-  devtool: 'inline-source-map'
+  ]
+};
+
+module.exports = (env, argv) => {
+  if (argv.mode === 'development') {
+    config.devtool = 'inline-source-map';
+  }
+
+  return config;
 }
