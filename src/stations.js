@@ -1,4 +1,4 @@
-export default [
+const stations = [
   { code: 'ABW', name: 'Abbey Wood' },
   { code: 'ABE', name: 'Aber' },
   { code: 'ACY', name: 'Abercynon' },
@@ -2570,3 +2570,10 @@ export default [
   { code: 'YSM', name: 'Ystrad Mynach' },
   { code: 'YSR', name: 'Ystrad Rhondda' }
 ];
+
+export default function findStationSuggestions (query) {
+  if (!query) { return []; }
+
+  let regExp = new RegExp(`^${query.toLowerCase()}`, 'i');
+  return stations.filter(station => station.name.match(regExp));
+};

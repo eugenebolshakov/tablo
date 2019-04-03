@@ -10,6 +10,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "autoprefixer": "^9.5.0",
     "babel-jest": "^24.7.0",
     "babel-loader": "^8.0.5",
@@ -26,6 +27,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.3",
+    "vue-jest": "^4.0.0-beta.2",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.29.6",
@@ -34,5 +36,16 @@
   },
   "dependencies": {
     "vue": "^2.6.10"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    }
   }
 }

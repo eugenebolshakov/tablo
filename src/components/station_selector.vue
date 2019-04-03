@@ -15,19 +15,14 @@
 </template>
 
 <script>
-import stations from '../stations.js';
+import findStationSuggestions from '../stations.js';
 
 export default {
   props: ['label'],
   data: () => ({ code: null, name: null, suggestions: [] }),
   methods: {
     showSuggestions: function() {
-      if (this.name.length) {
-        let regExp = new RegExp(`^${this.name.toLowerCase()}`, 'i');
-        this.suggestions = stations.filter(station => station.name.match(regExp));
-      } else {
-        this.suggestions = [];
-      }
+      this.suggestions = findStationSuggestions(this.name);
     },
 
     selectSuggestion: function(suggestion) {
