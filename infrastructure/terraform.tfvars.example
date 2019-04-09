@@ -1,0 +1,5 @@
+access_key = "AWS_ACCESS_KEY"
+secret_key = "AWS_SECRET_KEY"
+region = "AWS_REGION"
+transport_api_app_id = "TRANPORT_API_APP_ID"
+transport_api_app_key = "TRANPORT_API_APP_KEY"

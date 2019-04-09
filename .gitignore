@@ -1,1 +1,4 @@
 /node_modules
+/infrastructure/.terraform
+/infrastructure/*.tfstate*
+/infrastructure/*.tfvars
