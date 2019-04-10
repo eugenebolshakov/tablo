@@ -8,6 +8,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = (env, argv) => {
+  console.log(process.env.PATH);
+
   let config = {
     module: {
       rules: [
@@ -44,6 +46,9 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: 'main.css',
         chunkFilename: '[id].css'
+      }),
+      new webpack.DefinePlugin({
+        API_URL: JSON.stringify(process.env.API_URL)
       })
     ]
   };

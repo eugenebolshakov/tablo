@@ -1,8 +1,6 @@
 import 'cross-fetch/polyfill';
 
-const appId = "8848d21b";
-const appKey = "048eae2fe76eaf94472e7f3664860d07";
-const apiUrl = "https://transportapi.com/v3/uk/train/station";
+const apiUrl = `${API_URL}/v3/uk/train/station`;
 
 const knownStatuses = ['ON TIME', 'STARTS HERE', 'CHANGE OF ORIGIN', 'EARLY', 'NO REPORT', 'OFF ROUTE'];
 const dangerStatuses = ['DELAYED', 'CANCELLED'];
@@ -25,7 +23,7 @@ export function mapDeparture(departure) {
 export function findDepartures(query) {
   if (!query.from) { return []; }
 
-  let url = `${apiUrl}/${query.from}/live.json?app_id=${appId}&app_key=${appKey}&calling_at=${query.to || ""}&darwin=false&train_status=passenger&from_offset=PT00:00:00&station_detail=calling_at,destination`;
+  let url = `${apiUrl}/${query.from}/live.json?&calling_at=${query.to || ""}&darwin=false&train_status=passenger&from_offset=PT00:00:00&station_detail=calling_at,destination`;
 
   return fetch(url).then(response => response.json().then(json => {
     return json["departures"]["all"].map(departure => mapDeparture(departure))
