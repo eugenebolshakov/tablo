@@ -50,6 +50,12 @@ resource "aws_api_gateway_deployment" "default" {
   depends_on = ["aws_api_gateway_integration.default"]
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
   stage_name  = "default"
+
+  # Force re-deployment if anything in this file changes: there is no standard
+  # way to do this.
+  # https://github.com/hashicorp/terraform/issues/6613
+  # https://github.com/terraform-providers/terraform-provider-aws/issues/162
+  stage_description = "${filesha1("${path.module}/main.tf")}"
 }
 
 resource "aws_api_gateway_account" "default" {
