@@ -29,15 +29,13 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.3",
+    "vue": "^2.6.10",
     "vue-jest": "^4.0.0-beta.2",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
-  },
-  "dependencies": {
-    "vue": "^2.6.10"
   },
   "jest": {
     "moduleFileExtensions": [
