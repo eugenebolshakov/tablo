@@ -1,4 +1,4 @@
 /node_modules
-/infrastructure/.terraform
-/infrastructure/*.tfstate*
-/infrastructure/*.tfvars
+/api_proxy/.terraform
+/api_proxy/*.tfstate*
+/api_proxy/*.tfvars
